@@ -2,13 +2,13 @@ services:
   - type: web
     name: kimi-webui
     runtime: python
-    buildCommand: pip install --upgrade pip && python -m pip install --upgrade pip
+    buildCommand: pip install --upgrade pip
     startCommand: python3 server.py
     envVars:
       - key: KIMI_WEBUI_PASSWORD
-        value: kimikazi
+        sync: false
       - key: NVIDIA_API_KEY
-        fromSecret: nvidia-api-key
+        sync: false
       - key: KIMI_MODEL
         value: "ibm/granite-34b-code-instruct"
     ports:
