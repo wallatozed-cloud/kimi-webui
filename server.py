@@ -92,7 +92,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == "/auth":
             data = json.loads(self._read_body())
             if data.get("password") == PASSWORD:
-                self._json({"token": PASSWORD, "model": data.get("model", MODEL)})
+                self._json({"token": PASSWORD, "model": MODEL})
             else:
                 self._json({"error": "invalid"}, 401)
             return
