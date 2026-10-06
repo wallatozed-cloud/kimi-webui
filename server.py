@@ -26,7 +26,7 @@ if os.path.exists(env_path):
                 k, v = line.split("=", 1)
                 os.environ[k.strip()] = v.strip()
 
-PORT = int(os.getenv("KIMI_WEBUI_PORT", "8788"))
+PORT = int(os.getenv("PORT", os.getenv("KIMI_WEBUI_PORT", "8788")))
 PASSWORD = os.getenv("KIMI_WEBUI_PASSWORD", "")
 API_KEY = os.getenv("NVIDIA_API_KEY", "")
 BASE_URL = "https://integrate.api.nvidia.com/v1"
@@ -242,7 +242,9 @@ class QuietServer(ThreadingHTTPServer):
 
 
 def main():
-    server = QuietServer(("127.0.0.1", PORT), Handler)
+    # Bind to 0.0.0.0 for containerized environments (Render), 127.0.0.1 otherwise
+    bind_host = "0.0.0.0" if os.getenv("PORT") else "127.0.0.1"
+    server = QuietServer((bind_host, PORT), Handler)
     print(f"[kimi-webui] http://127.0.0.1:{PORT}")
     print(f"[kimi-webui] stream: {MODEL}")
     print(f"[kimi-webui] image: {FLUX}")
