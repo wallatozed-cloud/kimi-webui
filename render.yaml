@@ -9,8 +9,7 @@ services:
         sync: false
       - key: NVIDIA_API_KEY
         sync: false
-      - key: KIMI_MODEL
-        value: "ibm/granite-34b-code-instruct"
+      # KIMI_MODEL uses code default: moonshotai/kimi-k3
     ports:
       - port: 10000
         type: http
