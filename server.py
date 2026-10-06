@@ -30,7 +30,7 @@ PORT = int(os.getenv("PORT", os.getenv("KIMI_WEBUI_PORT", "8788")))
 PASSWORD = os.getenv("KIMI_WEBUI_PASSWORD", "")
 API_KEY = os.getenv("NVIDIA_API_KEY", "")
 BASE_URL = "https://integrate.api.nvidia.com/v1"
-MODEL = os.getenv("KIMI_MODEL", "deepseek-ai/deepseek-v4.1-flash")
+MODEL = os.getenv("KIMI_MODEL", "moonshotai/kimi-k3")
 FLUX = "black-forest-labs/flux.1-schnell"
 
 if not PASSWORD:
